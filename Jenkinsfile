@@ -18,16 +18,16 @@ pipeline {
         }
         stage('Uruchomienie aplikacji') {
             steps {
-                sh "docker run -d -p 0.0.0.0:5555:5555 --name flask_app -t flask_app:${BUILD_NUMBER}"
+                sh "docker run -d -p 127.0.0.1:5555:5555 --name flask_app -t flask_app:${BUILD_NUMBER}"
             }
         }
         stage('Wrzucenie obrazu dockera do Docker Huba') {
             steps {
-                sh "docker login -u devopstkhtechnology -p ${DOCKER_HUB_PASSWORD}"
-                sh "docker tag flask_app:${BUILD_NUMBER} devopstkhtechnology/flask_app:${BUILD_NUMBER}"
-                sh 'docker tag flask_app:latest devopstkhtechnology/flask_app:latest'
-                sh "docker push devopstkhtechnology/flask_app:${BUILD_NUMBER}"
-                sh 'docker push devopstkhtechnology/flask_app:latest'
+                sh "docker login -u admin -p ${DOCKER_HUB_PASSWORD}"
+                sh "docker tag flask_app:${BUILD_NUMBER} admin/flask_app:${BUILD_NUMBER}"
+                sh 'docker tag flask_app:latest admin/flask_app:latest'
+                sh "docker push admin/flask_app:${BUILD_NUMBER}"
+                sh 'docker push admin/flask_app:latest'
             }
         }
     }
