@@ -23,11 +23,11 @@ pipeline {
         }
         stage('Wrzucenie obrazu dockera do Docker Huba') {
             steps {
-                sh "docker login -u admin -p ${DOCKER_HUB_PASSWORD}"
-                sh "docker tag flask_app:${BUILD_NUMBER} admin/flask_app:${BUILD_NUMBER}"
-                sh 'docker tag flask_app:latest admin/flask_app:latest'
-                sh "docker push admin/flask_app:${BUILD_NUMBER}"
-                sh 'docker push admin/flask_app:latest'
+                sh "docker login -u bmarkowskii -p ${DOCKER_HUB_PASSWORD}"
+                sh "docker tag flask_app:${BUILD_NUMBER} bmarkowskii/flask_app:${BUILD_NUMBER}"
+                sh 'docker tag flask_app:latest bmarkowskii/flask_app:latest'
+                sh "docker push bmarkowskii/flask_app:${BUILD_NUMBER}"
+                sh 'docker push bmarkowskii/flask_app:latest'
             }
         }
     }
